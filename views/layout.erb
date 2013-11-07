@@ -1,0 +1,36 @@
+<html>
+	<head>
+		<title>Bookmark Manager</title>
+	</head>
+	<body>
+		<header>
+			<% if current_user %>
+				Welcome, <%= current_user.email %>
+			<% end %>
+			<h1>Bookmark Manager</h1>
+			<nav>
+				<a href='/add_link'>Add Link</a>
+				<ul>
+					<li><a href="/sign_up">Sign Up</a></li>
+					<li><a href="/sign_in">Sign In</a></li>
+				</ul>
+			</nav>
+			<% if flash[:errors] && !flash[:errors].empty? %>
+			  Sorry, there were the following problems with the form. 
+			  <ul id="errors">
+			    <% flash[:errors].each do |error| %>
+			      <li><%= error %></li>
+    			<% end %>
+  			</ul>
+<% end %>
+		</header>
+		<section>
+			<ul>
+				<li><a href="/tags">Tags</a></li>
+			</ul>
+			<%= yield %>
+		</section>
+		<footer>
+		</footer>
+	</body>
+</html>
